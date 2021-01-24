@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style module lang="scss">
-@import '../../scss/components/light-component';
+@import '~styles/components/light-component';
 
 .sidebar {
     @include light-component;
