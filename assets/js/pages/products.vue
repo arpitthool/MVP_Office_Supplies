@@ -2,81 +2,24 @@
     <div class="container-fluid">
         <div class="row">
             <aside class="col-xs-12 col-3">
-                <div :class="[$style.sidebar, 'p-3', 'mb-5']">
-                    <h5 class="text-center">
-                        Categories
-                    </h5>
-                    <ul class="nav flex-column mb4">
-                        <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="/"
-                            >All Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="#"
-                            >Category A</a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="#"
-                            >Category B</a>
-                        </li>
-                    </ul>
-                </div>
+                <sidebar />
             </aside>
             <div class="col-xs-12 col-9">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>
-                            Products
-                        </h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-6 mb-2 pb-2">
-                        TODO - load some products!
-                    </div>
-                </div>
-                <div class="row">
-                    <span class="p-3">
-                        <legend-component :title="legend" />
-                    </span>
-                </div>
+                <catalog />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import LegendComponent from '../components/legend';
+import Catalog from '../components/catalog';
+import Sidebar from '../components/sidebar';
 
 export default {
     name: 'Products', //for debugging purpose alwats give a name.
     components: {
-        LegendComponent,
-    },
-    data() {
-        return {
-            legend: "Shipping takes 10-12 weeks, and products probably won't work",
-        };
+        Catalog,
+        Sidebar,
     },
 };
 </script>
-
-<style module lang="scss">
-@import '../../scss/components/light-component';
-
-.sidebar {
-    @include light-component;
-
-    ul {
-        li a:hover {
-            background: $blue-component-link-hover;
-        }
-    }
-}
-</style>
