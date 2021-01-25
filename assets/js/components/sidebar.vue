@@ -1,40 +1,45 @@
 <template>
     <div>
         <div
-            :class="[$style.sidebar, 'p-3', 'mb-5']"
-            :style="{ width: collapsed ? '70px' : 'auto'}"
+            :class="{
+                [$style.component]: true,
+                [$style.collapsed]: collapsed,
+                'p-3': true,
+                'mb-5': true,
+            }"
         >
-            <h5 class="text-center">
-                Categories
-            </h5>
-            <ul class="nav flex-column mb4">
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="/"
-                    >All Products</a>
-                </li>
-                <li
-                    v-for="(category, index) in categories"
-                    :key="index"
-                    class="nav-item"
+            <div v-if="!collapsed">
+                <h5 class="text-center">
+                    Categories
+                </h5>
+                <ul class="nav flex-column mb4">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="/"
+                        >All Products</a>
+                    </li>
+                    <li
+                        v-for="(category, index) in categories"
+                        :key="index"
+                        class="nav-item"
+                    >
+                        <a
+                            class="nav-link"
+                            :href="category.link"
+                        >{{ category.name }}</a>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button
+                    class="btn btn-secondary btn-sm"
+                    @click="toggleCollapsed"
                 >
-                    <a
-                        class="nav-link"
-                        :href="category.link"
-                    >{{ category.name }}</a>
-                </li>
-            </ul>
-        </div>
-
-        <hr>
-        <div class="d-flex justify-content-end">
-            <button
-                class="btn btn-secondary btn-sm"
-                @click="toggleCollapsed"
-            >
-                {{ collapsed ? '>>' : '<<' }}
-            </button>
+                    {{ collapsed ? '>>' : '<<' }}
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -68,8 +73,12 @@ export default {
 <style module lang="scss">
 @import '~styles/components/light-component';
 
-.sidebar {
+.component {
     @include light-component;
+
+    &.collapsed {
+        width: 70px;
+    }
 
     ul {
         li a:hover {
