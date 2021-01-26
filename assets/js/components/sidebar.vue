@@ -28,9 +28,9 @@
             <div class="d-flex justify-content-end">
                 <button
                     class="btn btn-secondary btn-sm"
-                    @click="toggleCollapsed"
+                    @click="$emit('toggle-collapsed')"
                 >
-                    {{ collapsed ? '>>' : '<<' }}
+                    {{ collapsed ? 'expand' : 'collapse' }}
                 </button>
             </div>
         </div>
@@ -40,9 +40,14 @@
 <script>
 export default {
     name: 'Sidebar',
+    props: {
+        collapsed: {
+            type: Boolean,
+            required: true,
+        },
+    },
     data() {
         return {
-            collapsed: false,
             categories: [
                 {
                     name: 'Samsung Tablet X900',
@@ -69,11 +74,6 @@ export default {
             }
 
             return classes;
-        },
-    },
-    methods: {
-        toggleCollapsed() {
-            this.collapsed = !this.collapsed;
         },
     },
 };
