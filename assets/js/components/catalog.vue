@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LegendComponent from '@/components/legend.vue';
 
 export default {
@@ -30,8 +31,13 @@ export default {
     },
     data() {
         return {
+            products: [],
             legend: "Shipping takes 10-12 weeks, and products probably won't work",
         };
+    },
+    async mounted() {
+        const response = await axios.get('/api/products');
+        this.products = response.data['hydra:member'];
     },
 };
 </script>
